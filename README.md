@@ -1,3 +1,3 @@
-# NJIT-Task-2
+# Voice Recognition Dog
  
 https://youtu.be/Uf0AFAJgeX4
