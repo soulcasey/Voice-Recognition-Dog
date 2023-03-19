@@ -5,6 +5,7 @@ using UnityEngine.Events;
 using System;
 using System.Linq;
 using UnityEngine.Windows.Speech;
+using UnityEngine.UI;
 
 public enum VoiceActionType
 {
@@ -27,7 +28,6 @@ public class VoiceService : MonoBehaviour
 {
     public Dictionary<string, VoiceActionType> voiceActions = new Dictionary<string, VoiceActionType>()
     {
-        {"", VoiceActionType.None},
         {"Stop", VoiceActionType.Stop},
         {"Walk", VoiceActionType.Walk},
         {"Bounce", VoiceActionType.Bounce},
@@ -45,6 +45,8 @@ public class VoiceService : MonoBehaviour
 
     private KeywordRecognizer keywordRecognizer;
 
+    public Text voiceText;
+
     private void Start()
     {
         keywordRecognizer = new KeywordRecognizer(voiceActions.Keys.ToArray());
@@ -60,7 +62,11 @@ public class VoiceService : MonoBehaviour
         
         if (voiceActionType != VoiceActionType.None)
         {
-            VoiceActionEvent.Invoke(voiceActionType);
+            if (voiceText != null)
+            {
+                voiceText.text = phraseRecognizedEventArgs.text;
+            }
+            VoiceActionEvent?.Invoke(voiceActionType);
         }
     }
 }

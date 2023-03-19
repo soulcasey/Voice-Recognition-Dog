@@ -27,7 +27,7 @@ public class VoiceController : MonoBehaviour
         voiceService.VoiceActionEvent.RemoveListener(HandleOnVoiceActionEvent);    
     }
 
-    private void HandleOnVoiceActionEvent(VoiceActionType voiceActionType)
+    public void HandleOnVoiceActionEvent(VoiceActionType voiceActionType)
     {
         foreach (VoiceObject voiceObject in voiceObjects)
         {

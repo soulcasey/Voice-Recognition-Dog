@@ -9,13 +9,14 @@ public class DogObject : VoiceObject
 
     public override void PerformStop()
     {
-        objectRigidbody.velocity = Vector3.zero;
+        gameObject.transform.rotation = Quaternion.Euler(0, 210, 0);
+        currentSpeed = 0;
         animator.SetInteger("movement", 0);
     }
 
     public override void PerformWalk()
     {
-        objectRigidbody.velocity = transform.forward * DOG_SPEED;
+        currentSpeed = 1;
         animator.SetInteger("movement", 6);
     }
 
@@ -26,6 +27,7 @@ public class DogObject : VoiceObject
 
     public override void PerformRoll()
     {
+        currentSpeed = 5;
         animator.SetInteger("movement", 2);
     }
 
@@ -45,7 +47,7 @@ public class DogObject : VoiceObject
 
         if (animator.GetInteger("movement") == 0)
         {
-            animator.SetInteger("movement", 6);
+            PerformWalk();
         }
     }
 
@@ -55,7 +57,7 @@ public class DogObject : VoiceObject
 
         if (animator.GetInteger("movement") == 0)
         {
-            animator.SetInteger("movement", 6);
+            PerformWalk();
         }
     }
 
@@ -65,7 +67,7 @@ public class DogObject : VoiceObject
 
         if (animator.GetInteger("movement") == 0)
         {
-            animator.SetInteger("movement", 6);
+            PerformWalk();
         }
     }
 
@@ -75,7 +77,7 @@ public class DogObject : VoiceObject
 
         if (animator.GetInteger("movement") == 0)
         {
-            animator.SetInteger("movement", 6);
+            PerformWalk();
         }
     }
 

@@ -23,9 +23,7 @@ public abstract class VoiceObject : MonoBehaviour
 
     [SerializeField]
     protected Animator animator;
-
-    [SerializeField]
-    protected Rigidbody objectRigidbody;
+    protected int currentSpeed = 0;
 
     public void PerformVoiceAction(VoiceActionType voiceActionType)
     {
@@ -88,6 +86,16 @@ public abstract class VoiceObject : MonoBehaviour
                 PerformFly();
                 break;
             }
+        }
+    }
+
+    private void Update()
+    {
+        transform.position += transform.forward * Time.deltaTime * currentSpeed;
+
+        if (transform.position.y < -5) // If the object falls off
+        {
+            transform.position = new Vector3(0, 5, 0);
         }
     }
 
