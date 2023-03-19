@@ -12,19 +12,19 @@ using UnityEngine.Windows.Speech;
 public class VoiceController : MonoBehaviour
 {
     [SerializeField]
-    private List<VoiceObject> voiceObjects;
-    private KeywordRecognizer speech;
+    private VoiceService voiceService;
+
     [SerializeField]
-    private Text textVoice;
+    private List<VoiceObject> voiceObjects;
 
     private void Start()
     {
-        VoiceService.VoiceActionEvent.AddListener(HandleOnVoiceActionEvent);
+        voiceService.VoiceActionEvent.AddListener(HandleOnVoiceActionEvent);
     }
 
     private void OnDestroy()
     {
-        VoiceService.VoiceActionEvent.RemoveListener(HandleOnVoiceActionEvent);    
+        voiceService.VoiceActionEvent.RemoveListener(HandleOnVoiceActionEvent);    
     }
 
     private void HandleOnVoiceActionEvent(VoiceActionType voiceActionType)

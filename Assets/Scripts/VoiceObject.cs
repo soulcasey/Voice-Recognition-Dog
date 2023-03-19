@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,16 +7,19 @@ public enum VoiceObjectType
     Dog,
 }
 
+public enum VoiceSoundType
+{
+    Bark,
+}
+
 public abstract class VoiceObject : MonoBehaviour
 {
     public abstract VoiceObjectType voiceObjectType { get; }
+    public VoiceActionType VoiceActionType { get; protected set; } = VoiceActionType.Stop;
     public VoiceActionType currentVoiceActionType { get; protected set; } = VoiceActionType.Stop;
 
     [SerializeField]
     protected AudioSource voiceSource;
-
-    [SerializeField]
-    protected Dictionary<string, AudioClip> voiceClips;
 
     [SerializeField]
     protected Animator animator;
@@ -104,6 +107,11 @@ public abstract class VoiceObject : MonoBehaviour
     }
 
     public virtual void PerformRoll()
+    {
+
+    }
+
+    public virtual void PerformJump()
     {
 
     }

@@ -13,6 +13,7 @@ public enum VoiceActionType
     Walk,
     Bounce,
     Roll,
+    Jump,
     Spin,
     Left,
     Right,
@@ -22,7 +23,7 @@ public enum VoiceActionType
     Fly,
 }
 
-public class VoiceService
+public class VoiceService : MonoBehaviour
 {
     public Dictionary<string, VoiceActionType> voiceActions = new Dictionary<string, VoiceActionType>()
     {
@@ -31,6 +32,7 @@ public class VoiceService
         {"Walk", VoiceActionType.Walk},
         {"Bounce", VoiceActionType.Bounce},
         {"Roll", VoiceActionType.Roll},
+        {"Jump", VoiceActionType.Jump},
         {"Spin", VoiceActionType.Spin},
         {"Left", VoiceActionType.Left},
         {"Right", VoiceActionType.Right},
@@ -39,7 +41,7 @@ public class VoiceService
         {"Bark", VoiceActionType.Bark},
         {"Fly", VoiceActionType.Fly},
     };
-    public static UnityEvent<VoiceActionType> VoiceActionEvent;
+    public UnityEvent<VoiceActionType> VoiceActionEvent = new UnityEvent<VoiceActionType>();
 
     private KeywordRecognizer keywordRecognizer;
 
