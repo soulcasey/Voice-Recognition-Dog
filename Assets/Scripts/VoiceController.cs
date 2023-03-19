@@ -27,11 +27,11 @@ public class VoiceController : MonoBehaviour
         voiceService.VoiceActionEvent.RemoveListener(HandleOnVoiceActionEvent);    
     }
 
-    public void HandleOnVoiceActionEvent(VoiceActionType voiceActionType)
+    public void HandleOnVoiceActionEvent(VoiceAction voiceAction)
     {
         foreach (VoiceObject voiceObject in voiceObjects)
         {
-            voiceObject.PerformVoiceAction(voiceActionType);
+            voiceObject.SetVoiceAction(voiceAction);
         }
     }
 }

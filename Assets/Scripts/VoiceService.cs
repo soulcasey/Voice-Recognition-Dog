@@ -7,41 +7,23 @@ using System.Linq;
 using UnityEngine.Windows.Speech;
 using UnityEngine.UI;
 
-public enum VoiceActionType
-{
-    None,
-    Stop,
-    Walk,
-    Bounce,
-    Roll,
-    Jump,
-    Spin,
-    Left,
-    Right,
-    Backward,
-    Forward,
-    Bark,
-    Fly,
-}
-
 public class VoiceService : MonoBehaviour
 {
-    public Dictionary<string, VoiceActionType> voiceActions = new Dictionary<string, VoiceActionType>()
+    public List<VoiceAction> voiceActions = new List<VoiceAction>()
     {
-        {"Stop", VoiceActionType.Stop},
-        {"Walk", VoiceActionType.Walk},
-        {"Bounce", VoiceActionType.Bounce},
-        {"Roll", VoiceActionType.Roll},
-        {"Jump", VoiceActionType.Jump},
-        {"Spin", VoiceActionType.Spin},
-        {"Left", VoiceActionType.Left},
-        {"Right", VoiceActionType.Right},
-        {"Backward", VoiceActionType.Backward},
-        {"Forward", VoiceActionType.Forward},
-        {"Bark", VoiceActionType.Bark},
-        {"Fly", VoiceActionType.Fly},
+        new StopAction(),
+        new WalkAction(),
+        new BounceAction(),
+        new RollAction(),
+        new JumpAction(),
+        new SpinAction(),
+        new LeftAction(),
+        new RightAction(),
+        new BackwardAction(),
+        new ForwardAction(),
+        new BarkAction(),
     };
-    public UnityEvent<VoiceActionType> VoiceActionEvent = new UnityEvent<VoiceActionType>();
+    public UnityEvent<VoiceAction> VoiceActionEvent = new UnityEvent<VoiceAction>();
 
     private KeywordRecognizer keywordRecognizer;
 
@@ -49,24 +31,29 @@ public class VoiceService : MonoBehaviour
 
     private void Start()
     {
-        keywordRecognizer = new KeywordRecognizer(voiceActions.Keys.ToArray());
+        string[] voiceActionCommands = voiceActions.Select(voiceAction => voiceAction.GetVoiceActionCommand()).ToArray();
+
+        foreach (string x in voiceActionCommands)
+        {
+            Debug.Log(x);
+        }
+
+        keywordRecognizer = new KeywordRecognizer(voiceActionCommands);
         keywordRecognizer.OnPhraseRecognized += HandleOnPhraseRecognized;
         keywordRecognizer.Start();
     }
 
     private void HandleOnPhraseRecognized(PhraseRecognizedEventArgs phraseRecognizedEventArgs)
     {
-        VoiceActionType voiceActionType = VoiceActionType.None;
+        string speech = phraseRecognizedEventArgs.text;
 
-        voiceActions.TryGetValue(phraseRecognizedEventArgs.text, out voiceActionType);
-        
-        if (voiceActionType != VoiceActionType.None)
+        VoiceAction recognizedVoiceAction = voiceActions.First(voiceAction => voiceAction.GetVoiceActionCommand() == speech);
+
+        if (recognizedVoiceAction != null)
         {
-            if (voiceText != null)
-            {
-                voiceText.text = phraseRecognizedEventArgs.text;
-            }
-            VoiceActionEvent?.Invoke(voiceActionType);
+            voiceText.text = speech;
+
+            VoiceActionEvent?.Invoke(recognizedVoiceAction);
         }
     }
 }
