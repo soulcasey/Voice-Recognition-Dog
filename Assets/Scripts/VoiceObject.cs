@@ -12,7 +12,7 @@ public enum VoiceSoundType
     Bark,
 }
 
-public abstract class VoiceObject : MonoBehaviour
+public abstract class VoiceObject : MonoBehaviour, IOutlineObject
 {
     public abstract VoiceObjectType voiceObjectType { get; }
     public VoiceAction currentVoiceAction { get; protected set; }
@@ -23,6 +23,11 @@ public abstract class VoiceObject : MonoBehaviour
     [SerializeField]
     protected Animator animator;
     protected float speed = 0;
+
+    [SerializeField]
+    protected Renderer objectRenderer;
+    protected virtual float outlineWidth { get; set; } = 0.002f;
+    
 
     public void SetVoiceAction(VoiceAction newVoiceAction)
     {
@@ -59,5 +64,15 @@ public abstract class VoiceObject : MonoBehaviour
         {
             transform.position = new Vector3(0, 5, 0);
         }
+    }
+
+    public void HandleOnOutlineStart()
+    {
+        objectRenderer.material.SetFloat("_OutlineEnabled", 1);
+    }
+
+    public void HandleOnOutlineEnd()
+    {
+        objectRenderer.material.SetFloat("_OutlineEnabled", 0);
     }
 }

@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mat_Dog
-  m_Shader: {fileID: 4800000, guid: 42f746eaacbc2a24d9618184e5392aa2, type: 3}
+  m_Name: DogMaterial
+  m_Shader: {fileID: 4800000, guid: 74b68cc237ec50147ab445ded56f948f, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
+  m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
   stringTagMap: {}
@@ -55,24 +55,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Ramp:
-        m_Texture: {fileID: 10307, guid: 0000000000000000f000000000000000, type: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     m_Floats:
     - _BumpScale: 1
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
-    - _Emission: 0.5
+    - _Emission: 0.424
     - _GlossMapScale: 1
-    - _Glossiness: 0.103
+    - _Glossiness: 0.5
     - _GlossyReflections: 1
-    - _Metallic: 0.473
+    - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
+    - _Outline: 0.002
+    - _OutlineEnabled: 0
+    - _OutlineWidth: 0
     - _Parallax: 0.02
-    - _RimPower: 3.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _SrcBlend: 1
@@ -81,5 +79,5 @@ Material:
     m_Colors:
     - _Color: {r: 0.4, g: 0.4, b: 0.4, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0.6666667, g: 0.6666667, b: 0.6666667, a: 1}
+    - _OutlineColor: {r: 0, g: 0.7957666, b: 1, a: 1}
   m_BuildTextureStacks: []

@@ -33,11 +33,6 @@ public class VoiceService : MonoBehaviour
     {
         string[] voiceActionCommands = voiceActions.Select(voiceAction => voiceAction.GetVoiceActionCommand()).ToArray();
 
-        foreach (string x in voiceActionCommands)
-        {
-            Debug.Log(x);
-        }
-
         keywordRecognizer = new KeywordRecognizer(voiceActionCommands);
         keywordRecognizer.OnPhraseRecognized += HandleOnPhraseRecognized;
         keywordRecognizer.Start();
