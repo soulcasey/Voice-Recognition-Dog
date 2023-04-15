@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class VoiceService : MonoBehaviour
 {
+    public static VoiceService Instance = null;
+
     public List<VoiceAction> voiceActions = new List<VoiceAction>()
     {
         new StopAction(),
@@ -27,10 +29,15 @@ public class VoiceService : MonoBehaviour
 
     private KeywordRecognizer keywordRecognizer;
 
-    public Text voiceText;
-
-    private void Start()
+    private void Awake()
     {
+        Instance = this;
+        SetVoiceService();
+    }
+
+    public void SetVoiceService()
+    {
+
         string[] voiceActionCommands = voiceActions.Select(voiceAction => voiceAction.GetVoiceActionCommand()).ToArray();
 
         keywordRecognizer = new KeywordRecognizer(voiceActionCommands);
@@ -46,8 +53,6 @@ public class VoiceService : MonoBehaviour
 
         if (recognizedVoiceAction != null)
         {
-            voiceText.text = speech;
-
             VoiceActionEvent?.Invoke(recognizedVoiceAction);
         }
     }

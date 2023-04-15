@@ -12,19 +12,16 @@ using UnityEngine.Windows.Speech;
 public class VoiceController : MonoBehaviour
 {
     [SerializeField]
-    private VoiceService voiceService;
-
-    [SerializeField]
     private List<VoiceObject> voiceObjects;
 
     private void Start()
     {
-        voiceService.VoiceActionEvent.AddListener(HandleOnVoiceActionEvent);
+        VoiceService.Instance.VoiceActionEvent.AddListener(HandleOnVoiceActionEvent);
     }
 
     private void OnDestroy()
     {
-        voiceService.VoiceActionEvent.RemoveListener(HandleOnVoiceActionEvent);    
+        VoiceService.Instance.VoiceActionEvent.RemoveListener(HandleOnVoiceActionEvent);    
     }
 
     public void HandleOnVoiceActionEvent(VoiceAction voiceAction)
