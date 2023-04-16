@@ -23,6 +23,26 @@ public abstract class VoiceAction
     public virtual void OnExit(VoiceObject currentVoiceObject) { }
 }
 
+public class NoAction : VoiceAction
+{
+    public override VoiceActionType GetVoiceActionType()
+    {
+        return VoiceActionType.None;
+    }
+
+    public override string GetVoiceActionCommand()
+    {
+        return "Error... Hmm";
+    }
+
+    public override void PerformVoiceAction(VoiceObject voiceObject)
+    {
+        voiceObject.SetRotation(210);
+        voiceObject.SetSpeed(0);
+        voiceObject.SetAnimator(0);
+    }
+}
+
 public class StopAction : VoiceAction
 {
     public override VoiceActionType GetVoiceActionType()
@@ -32,7 +52,7 @@ public class StopAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Stop";
+        return "STOP";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
@@ -52,7 +72,7 @@ public class WalkAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Walk";
+        return "WALK";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
@@ -71,7 +91,7 @@ public class BounceAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Bounce";
+        return "BOUNCE";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
@@ -90,7 +110,7 @@ public class RollAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Roll";
+        return "ROLL";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
@@ -109,7 +129,7 @@ public class JumpAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Jump";
+        return "JUMP";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
@@ -128,7 +148,7 @@ public class SpinAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Spin";
+        return "SPIN";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
@@ -147,7 +167,7 @@ public class LeftAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Left";
+        return "LEFT";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
@@ -165,7 +185,7 @@ public class RightAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Right";
+        return "RIGHT";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
@@ -183,7 +203,7 @@ public class BackwardAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Backward";
+        return "BACKWARD";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
@@ -201,7 +221,7 @@ public class ForwardAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Forward";
+        return "FORWARD";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
@@ -219,7 +239,7 @@ public class BarkAction : VoiceAction
 
     public override string GetVoiceActionCommand()
     {
-        return "Bark";
+        return "BARK";
     }
 
     public override void PerformVoiceAction(VoiceObject voiceObject)
